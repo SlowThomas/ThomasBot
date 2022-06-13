@@ -3,6 +3,7 @@ const { Client, Collection, Intents } = require('discord.js');
 // node filesystem
 const fs = require('fs');
 require('dotenv').config()
+const pinword_b = require("./background/pinword_b.js");
 
 
 // Create a new client instance
@@ -23,8 +24,10 @@ for (const file of commandFiles) {
 const messagePrefix = '!';
 
 client.on('message', (message) => {
-    if (!message.content.startsWith(messagePrefix)) return;
     if (message.author.bot) return;
+    pinword_b.listen(message);
+
+    if (!message.content.startsWith(messagePrefix)) return;
 
     // we dont care about uppper/lower case
     const command = client.commands.get(message.content.substring(messagePrefix.length).toLowerCase().split(' ')[0]);
@@ -50,4 +53,4 @@ client.once('ready', () => {
 });
 
 // Login to Discord with your client's token
-client.login(process.env.token);
+client.login(process.env.TOKEN);

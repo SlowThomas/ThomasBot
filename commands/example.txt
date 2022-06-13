@@ -1,0 +1,10 @@
+const {  } = require("./db.js")
+module.exports = {
+	name: '',
+	description: '',
+	argsRequired: false,
+
+	execute(message, args) {
+        
+	}
+};
